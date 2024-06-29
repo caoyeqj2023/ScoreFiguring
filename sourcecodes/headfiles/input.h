@@ -26,16 +26,16 @@ namespace inputFunctions {
     std::vector<int> getLineData() {
         std::vector<int> rst;
         char _ch = getchar();
-        while (_ch == '\n') _ch = getchar();            // 过滤行末换行
+        while (_ch == '\n') _ch = getchar();                        // 过滤行末换行
         while (true) {
             int _data = 0;
-            while (_ch == ' ') _ch = getchar();         // 过滤空格
+            while (_ch == '\t' || _ch == ' ') _ch = getchar();      // 过滤空格、制表符
             while (isDigit(_ch)) {
                 _data = _data * 10 + getDigit(_ch);
                 _ch = getchar();
             }
-            if (_ch != ' ') {
-                if (_ch == '\n' || _ch == EOF) break;   // 除空格、换行和数字外的字符均为非法字符
+            if (_ch != '\t' && _ch != ' ') {
+                if (_ch == '\n' || _ch == EOF) break;               // 除制表符、空格、换行和数字外的字符均为非法字符
                 else CLI_Functions::printError("Invalid character.");
             }
             else _ch = getchar();

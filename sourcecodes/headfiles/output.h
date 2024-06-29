@@ -122,11 +122,16 @@ namespace outputFunctions {
             for (int j = 0; j < att[i].size(); j++) {
                 if (att[i][j] == 0) {
                     combo = 0;
-                    printf("0 ");
+                    printf("0\t");
                 }
                 else {
                     combo = combo + 1;
-                    printf("%d ", figureFunctions::getScore(combo, tot[j], att[i][j] == 2));
+                    printf("%d", figureFunctions::getScore(combo, tot[j], att[i][j] == 2));
+
+                    // 此处注释原因：不需要输出是否额外加分，因为后续在 Excel 中完成求和运算
+                    // if (att[i][j] == 2) printf("(+5)");
+
+                    printf("\t");
                 }
                 freopen("CON", "a", stdout);
                 processFunctions::printProcess((i * att[i].size() + j + 1.0) / (totNumber * att[i].size()));
